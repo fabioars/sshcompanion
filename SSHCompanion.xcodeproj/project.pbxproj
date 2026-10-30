@@ -1,0 +1,621 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 90;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0000000000000000000B0001 /* SwiftTerm in Frameworks */ = {isa = PBXBuildFile; productRef = 0000000000000000000A0001 /* SwiftTerm */; };
+		0000000000000000000B0002 /* Libsql in Frameworks */ = {isa = PBXBuildFile; productRef = 0000000000000000000A0002 /* Libsql */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0000000000000000000C0001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 000000000000000000000000 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 000000000000000100000000;
+			remoteInfo = SSHCompanion;
+		};
+		0000000000000000000C0002 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 000000000000000000000000 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 000000000000000100000000;
+			remoteInfo = SSHCompanion;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		000000000000000000000120 /* SSHCompanion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SSHCompanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0000000000000000000D0120 /* SSHCompanionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SSHCompanionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0000000000000000000E0120 /* SSHCompanionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SSHCompanionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		000000000000000000000010 /* SSHCompanion */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SSHCompanion;
+			sourceTree = "<group>";
+		};
+		0000000000000000000D0010 /* SSHCompanionTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SSHCompanionTests;
+			sourceTree = "<group>";
+		};
+		0000000000000000000E0010 /* SSHCompanionUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SSHCompanionUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0000000000000000000D0130 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		0000000000000000000E0130 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		000000000000000130000000 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				0000000000000000000B0001 /* SwiftTerm in Frameworks */,
+				0000000000000000000B0002 /* Libsql in Frameworks */,
+			);
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		000000000000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000000010 /* SSHCompanion */,
+				0000000000000000000D0010 /* SSHCompanionTests */,
+				0000000000000000000E0010 /* SSHCompanionUITests */,
+				000000000000000000000020 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		000000000000000000000020 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000000120 /* SSHCompanion.app */,
+				0000000000000000000D0120 /* SSHCompanionTests.xctest */,
+				0000000000000000000E0120 /* SSHCompanionUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0000000000000000000D0100 /* SSHCompanionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0000000000000000000D0110 /* Build configuration list for PBXNativeTarget "SSHCompanionTests" */;
+			buildPhases = (
+				0000000000000000000D0125 /* Sources */,
+				0000000000000000000D0130 /* Frameworks */,
+				0000000000000000000D0140 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0000000000000000000D0150 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				0000000000000000000D0010 /* SSHCompanionTests */,
+			);
+			name = SSHCompanionTests;
+			productName = SSHCompanionTests;
+			productReference = 0000000000000000000D0120 /* SSHCompanionTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		0000000000000000000E0100 /* SSHCompanionUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0000000000000000000E0110 /* Build configuration list for PBXNativeTarget "SSHCompanionUITests" */;
+			buildPhases = (
+				0000000000000000000E0125 /* Sources */,
+				0000000000000000000E0130 /* Frameworks */,
+				0000000000000000000E0140 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0000000000000000000E0150 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				0000000000000000000E0010 /* SSHCompanionUITests */,
+			);
+			name = SSHCompanionUITests;
+			productName = SSHCompanionUITests;
+			productReference = 0000000000000000000E0120 /* SSHCompanionUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		000000000000000100000000 /* SSHCompanion */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 000000000000000110000000 /* Build configuration list for PBXNativeTarget "SSHCompanion" */;
+			buildPhases = (
+				000000000000000120000000 /* Sources */,
+				000000000000000130000000 /* Frameworks */,
+				000000000000000140000000 /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				000000000000000000000010 /* SSHCompanion */,
+			);
+			name = SSHCompanion;
+			packageProductDependencies = (
+				0000000000000000000A0001 /* SwiftTerm */,
+				0000000000000000000A0002 /* Libsql */,
+			);
+			productName = MyApp;
+			productReference = 000000000000000000000120 /* SSHCompanion.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		000000000000000000000000 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2630;
+				LastUpgradeCheck = 2700;
+				TargetAttributes = {
+					0000000000000000000D0100 = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = 000000000000000100000000;
+					};
+					0000000000000000000E0100 = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = 000000000000000100000000;
+					};
+					000000000000000100000000 = {
+						CreatedOnToolsVersion = 26.3;
+					};
+				};
+			};
+			buildConfigurationList = 000000000000000010000000 /* Build configuration list for PBXProject "SSHCompanion" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 000000000000000000000001;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				000000000000000000090001 /* XCRemoteSwiftPackageReference "SwiftTerm" */,
+				000000000000000000090002 /* XCRemoteSwiftPackageReference "libsql-swift" */,
+			);
+			preferredProjectObjectVersion = 90;
+			productRefGroup = 000000000000000000000020 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				000000000000000100000000 /* SSHCompanion */,
+				0000000000000000000D0100 /* SSHCompanionTests */,
+				0000000000000000000E0100 /* SSHCompanionUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0000000000000000000D0140 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		0000000000000000000E0140 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		000000000000000140000000 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0000000000000000000D0125 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		0000000000000000000E0125 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		000000000000000120000000 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0000000000000000000D0150 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 000000000000000100000000 /* SSHCompanion */;
+			targetProxy = 0000000000000000000C0001 /* PBXContainerItemProxy */;
+		};
+		0000000000000000000E0150 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 000000000000000100000000 /* SSHCompanion */;
+			targetProxy = 0000000000000000000C0002 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0000000000000000000D0111 /* Debug configuration for PBXNativeTarget "SSHCompanionTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.mxmz.SSHCompanionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SSHCompanion.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SSHCompanion";
+			};
+			name = Debug;
+		};
+		0000000000000000000D0112 /* Release configuration for PBXNativeTarget "SSHCompanionTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.mxmz.SSHCompanionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SSHCompanion.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SSHCompanion";
+			};
+			name = Release;
+		};
+		0000000000000000000E0111 /* Debug configuration for PBXNativeTarget "SSHCompanionUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.mxmz.SSHCompanionUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = SSHCompanion;
+			};
+			name = Debug;
+		};
+		0000000000000000000E0112 /* Release configuration for PBXNativeTarget "SSHCompanionUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.mxmz.SSHCompanionUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = SSHCompanion;
+			};
+			name = Release;
+		};
+		000000000000000011000000 /* Debug configuration for PBXProject "SSHCompanion" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DRIVERKIT_DEPLOYMENT_TARGET = 27.0;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PROJECT_UNIQUE_VALUE = NKVA41WR;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TVOS_DEPLOYMENT_TARGET = 27.0;
+				WATCHOS_DEPLOYMENT_TARGET = 27.0;
+				XROS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Debug;
+		};
+		000000000000000012000000 /* Release configuration for PBXProject "SSHCompanion" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DRIVERKIT_DEPLOYMENT_TARGET = 27.0;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 27.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PROJECT_UNIQUE_VALUE = NKVA41WR;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				TVOS_DEPLOYMENT_TARGET = 27.0;
+				WATCHOS_DEPLOYMENT_TARGET = 27.0;
+				XROS_DEPLOYMENT_TARGET = 27.0;
+			};
+			name = Release;
+		};
+		000000000000000111000000 /* Debug configuration for PBXNativeTarget "SSHCompanion" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SSHCompanion-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "SSH Companion";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.mxmz.SSHCompanion;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		000000000000000112000000 /* Release configuration for PBXNativeTarget "SSHCompanion" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_APP_SANDBOX = NO;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "SSHCompanion-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "SSH Companion";
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = tech.mxmz.SSHCompanion;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = auto;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0000000000000000000D0110 /* Build configuration list for PBXNativeTarget "SSHCompanionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0000000000000000000D0111 /* Debug configuration for PBXNativeTarget "SSHCompanionTests" */,
+				0000000000000000000D0112 /* Release configuration for PBXNativeTarget "SSHCompanionTests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		0000000000000000000E0110 /* Build configuration list for PBXNativeTarget "SSHCompanionUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0000000000000000000E0111 /* Debug configuration for PBXNativeTarget "SSHCompanionUITests" */,
+				0000000000000000000E0112 /* Release configuration for PBXNativeTarget "SSHCompanionUITests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		000000000000000010000000 /* Build configuration list for PBXProject "SSHCompanion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				000000000000000011000000 /* Debug configuration for PBXProject "SSHCompanion" */,
+				000000000000000012000000 /* Release configuration for PBXProject "SSHCompanion" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		000000000000000110000000 /* Build configuration list for PBXNativeTarget "SSHCompanion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				000000000000000111000000 /* Debug configuration for PBXNativeTarget "SSHCompanion" */,
+				000000000000000112000000 /* Release configuration for PBXNativeTarget "SSHCompanion" */,
+			);
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		000000000000000000090001 /* XCRemoteSwiftPackageReference "SwiftTerm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/migueldeicaza/SwiftTerm";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.99.2;
+			};
+		};
+		000000000000000000090002 /* XCRemoteSwiftPackageReference "libsql-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tursodatabase/libsql-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0000000000000000000A0001 /* SwiftTerm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 000000000000000000090001 /* XCRemoteSwiftPackageReference "SwiftTerm" */;
+			productName = SwiftTerm;
+		};
+		0000000000000000000A0002 /* Libsql */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 000000000000000000090002 /* XCRemoteSwiftPackageReference "libsql-swift" */;
+			productName = Libsql;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 000000000000000000000000 /* Project object */;
+}
