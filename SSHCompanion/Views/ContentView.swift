@@ -18,6 +18,7 @@ struct ContentView: View {
     @State private var inspectorTab: InspectorTab = .history
     @State private var deleteTarget: TreeSelection?
     @State private var errorMessage: String?
+    @State private var hostWindow: NSWindow?
 
     var body: some View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
@@ -88,6 +89,7 @@ struct ContentView: View {
         .sheet(item: $importModel) { model in
             DigitalOceanImportView(model: model, container: store.addContainer(for: store.selection))
         }
+        .background(WindowAccessor(window: $hostWindow))
         .task { store.load() }
         .onChange(of: commands.sequence) { handleMenuCommand() }
         .onOpenURL(perform: handleDeepLink)
@@ -105,9 +107,12 @@ struct ContentView: View {
         sessions.open(server: server)
     }
 
-    /// `sshcompanion://connect?server=nome` (ou `?id=uuid`): abre uma aba e traz a janela para frente.
+    /// `sshcompanion://connect?server=nome` (ou `?id=uuid`): abre uma aba na última janela que teve foco
+    /// e a traz para frente.
     private func handleDeepLink(_ url: URL) {
         guard let link = DeepLink(url: url) else { return }
+        // Com várias janelas o evento chega a todas; só a mais recente em foco o trata.
+        guard isFrontmostWindow else { return }
         if store.workspaces.isEmpty { store.load() }
         switch link {
         case .connect(let serverID, let query):
@@ -120,7 +125,17 @@ struct ContentView: View {
             sessions.open(server: server)
         }
         NSApp.activate(ignoringOtherApps: true)
-        NSApp.windows.first { $0.canBecomeMain }?.makeKeyAndOrderFront(nil)
+        Self.frontmostMainWindow?.makeKeyAndOrderFront(nil)
+    }
+
+    /// Janela principal mais à frente na ordem de empilhamento: a última que o usuário focou.
+    private static var frontmostMainWindow: NSWindow? {
+        NSApp.orderedWindows.first { $0.canBecomeMain && $0.isVisible }
+    }
+
+    private var isFrontmostWindow: Bool {
+        guard let front = Self.frontmostMainWindow else { return true }
+        return front === hostWindow
     }
 
     private func handleAdd() {
@@ -268,6 +283,23 @@ extension SSHConfigImportModel: Identifiable {
 
 extension DigitalOceanImportModel: Identifiable {
     var id: ObjectIdentifier { ObjectIdentifier(self) }
+}
+
+/// Expõe a `NSWindow` que hospeda a view, para saber se esta janela é a que está à frente.
+private struct WindowAccessor: NSViewRepresentable {
+    @Binding var window: NSWindow?
+
+    func makeNSView(context: Context) -> NSView {
+        let view = NSView()
+        DispatchQueue.main.async { window = view.window }
+        return view
+    }
+
+    func updateNSView(_ view: NSView, context: Context) {
+        if window !== view.window {
+            DispatchQueue.main.async { window = view.window }
+        }
+    }
 }
 
 /// Divisão aguardando a escolha do servidor no picker.

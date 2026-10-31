@@ -25,11 +25,14 @@ struct SSHCompanionApp: App {
                 .environment(notes)
                 .environment(commands)
                 .environment(layout)
+                .handlesExternalEvents(preferring: [DeepLink.scheme], allowing: [DeepLink.scheme])
                 .task {
                     if let director = DemoDirector(store: store, sessions: sessions, commands: commands, layout: layout) { await director.run() }
                 }
         }
         .defaultSize(width: 1100, height: 700)
+        // Deep links (Raycast) vão para uma janela já aberta em vez de criar outra.
+        .handlesExternalEvents(matching: [DeepLink.scheme])
         .commands {
             CommandGroup(replacing: .newItem) {
                 Button("Novo servidor") { commands.send(.newServer) }
