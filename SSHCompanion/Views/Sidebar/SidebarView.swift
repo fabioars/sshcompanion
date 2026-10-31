@@ -6,7 +6,9 @@ struct SidebarView: View {
     @AppStorage("sidebar.expanded") private var expandedData = Data()
     @State private var expanded: Set<UUID> = []
     let onActivate: (Server) -> Void
-    let onAdd: (ItemKind, ContainerRef) -> Void
+    let onAdd: (ItemKind, ContainerRef?) -> Void
+    let onEdit: (TreeSelection) -> Void
+    let onDelete: (TreeSelection) -> Void
 
     var body: some View {
         @Bindable var store = store
@@ -14,17 +16,31 @@ struct SidebarView: View {
             ForEach(store.workspaces) { workspace in
                 DisclosureGroup(isExpanded: binding(for: workspace.id)) {
                     ForEach(workspace.children) { item in
-                        TreeItemRow(item: item, expanded: binding(for:), onActivate: onActivate, onAdd: onAdd)
+                        TreeItemRow(
+                            item: item,
+                            expanded: binding(for:),
+                            onActivate: onActivate,
+                            onAdd: onAdd,
+                            onEdit: onEdit,
+                            onDelete: onDelete
+                        )
                     }
                 } label: {
                     Label(workspace.name, systemImage: "square.stack.3d.up")
                         .accessibilityIdentifier("tree.workspace.\(workspace.name)")
                         .treeDropTarget(.workspace(workspace.id))
+                        // No label, não no DisclosureGroup: ali o menu se propagaria às linhas filhas.
+                        .contextMenu {
+                            TreeContextMenu(
+                                selection: .workspace(workspace.id),
+                                container: .workspace(workspace.id),
+                                onAdd: onAdd,
+                                onEdit: onEdit,
+                                onDelete: onDelete
+                            )
+                        }
                 }
                 .tag(TreeSelection.workspace(workspace.id))
-                .contextMenu {
-                    AddItemsMenu(container: .workspace(workspace.id), onAdd: onAdd)
-                }
             }
         }
         .listStyle(.sidebar)
@@ -71,25 +87,40 @@ struct TreeItemRow: View {
     let item: TreeItem
     let expanded: (UUID) -> Binding<Bool>
     let onActivate: (Server) -> Void
-    let onAdd: (ItemKind, ContainerRef) -> Void
+    let onAdd: (ItemKind, ContainerRef?) -> Void
+    let onEdit: (TreeSelection) -> Void
+    let onDelete: (TreeSelection) -> Void
 
     var body: some View {
         switch item {
         case .directory(let directory):
             DisclosureGroup(isExpanded: expanded(directory.id)) {
                 ForEach(directory.children) { child in
-                    TreeItemRow(item: child, expanded: expanded, onActivate: onActivate, onAdd: onAdd)
+                    TreeItemRow(
+                        item: child,
+                        expanded: expanded,
+                        onActivate: onActivate,
+                        onAdd: onAdd,
+                        onEdit: onEdit,
+                        onDelete: onDelete
+                    )
                 }
             } label: {
                 Label(directory.name, systemImage: "folder")
                     .accessibilityIdentifier("tree.directory.\(directory.name)")
                     .treeDraggable(directory.id)
                     .treeDropTarget(.directory(directory.id))
+                    .contextMenu {
+                        TreeContextMenu(
+                            selection: .item(directory.id),
+                            container: .directory(directory.id),
+                            onAdd: onAdd,
+                            onEdit: onEdit,
+                            onDelete: onDelete
+                        )
+                    }
             }
             .tag(TreeSelection.item(directory.id))
-            .contextMenu {
-                AddItemsMenu(container: .directory(directory.id), onAdd: onAdd)
-            }
         case .server(let server):
             HStack {
                 Label {
@@ -110,35 +141,64 @@ struct TreeItemRow: View {
             .accessibilityIdentifier("tree.server.\(server.name)")
             .tag(TreeSelection.item(server.id))
             .contextMenu {
-                Button("Conectar") { onActivate(server) }
-                Divider()
-                ServerSiblingMenu(serverID: server.id, onAdd: onAdd)
+                ServerContextMenu(
+                    server: server,
+                    onActivate: onActivate,
+                    onAdd: onAdd,
+                    onEdit: onEdit,
+                    onDelete: onDelete
+                )
             }
         }
     }
 }
 
-/// Itens de menu para criar filhos dentro de um workspace ou diretório.
-struct AddItemsMenu: View {
-    let container: ContainerRef
-    let onAdd: (ItemKind, ContainerRef) -> Void
+/// Menu de contexto comum a workspaces e diretórios: criar filhos, editar e apagar.
+struct TreeContextMenu: View {
+    let selection: TreeSelection
+    let container: ContainerRef?
+    var server: Server? = nil
+    var onActivate: ((Server) -> Void)? = nil
+    let onAdd: (ItemKind, ContainerRef?) -> Void
+    let onEdit: (TreeSelection) -> Void
+    let onDelete: (TreeSelection) -> Void
 
     var body: some View {
-        Button("Novo diretório") { onAdd(.directory, container) }
-        Button("Novo servidor") { onAdd(.server, container) }
+        Menu("Novo") {
+            if let container {
+                Button("Servidor") { onAdd(.server, container) }
+                Button("Diretório") { onAdd(.directory, container) }
+            }
+            Button("Workspace") { onAdd(.workspace, nil) }
+        }
+        Divider()
+        if let server, let onActivate {
+            Button("Conectar") { onActivate(server) }
+        }
+        Button("Editar") { onEdit(selection) }
+        Button("Apagar", role: .destructive) { onDelete(selection) }
     }
 }
 
-/// Para servidores (folhas), cria o novo item no mesmo pai.
-struct ServerSiblingMenu: View {
+/// Para servidores (folhas), os novos itens são criados no mesmo pai.
+struct ServerContextMenu: View {
     @Environment(ServerStore.self) private var store
-    let serverID: UUID
-    let onAdd: (ItemKind, ContainerRef) -> Void
+    let server: Server
+    let onActivate: (Server) -> Void
+    let onAdd: (ItemKind, ContainerRef?) -> Void
+    let onEdit: (TreeSelection) -> Void
+    let onDelete: (TreeSelection) -> Void
 
     var body: some View {
-        if let parent = store.parent(of: serverID) {
-            AddItemsMenu(container: parent, onAdd: onAdd)
-        }
+        TreeContextMenu(
+            selection: .item(server.id),
+            container: store.parent(of: server.id),
+            server: server,
+            onActivate: onActivate,
+            onAdd: onAdd,
+            onEdit: onEdit,
+            onDelete: onDelete
+        )
     }
 }
 

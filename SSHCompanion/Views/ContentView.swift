@@ -16,12 +16,17 @@ struct ContentView: View {
     @State private var pendingSplit: PendingSplit?
     @State private var showInspector = false
     @State private var inspectorTab: InspectorTab = .history
-    @State private var confirmDelete = false
+    @State private var deleteTarget: TreeSelection?
     @State private var errorMessage: String?
 
     var body: some View {
         NavigationSplitView(columnVisibility: $columnVisibility) {
-            SidebarView(onActivate: openSession, onAdd: startCreate)
+            SidebarView(
+                onActivate: openSession,
+                onAdd: startCreate,
+                onEdit: { edit($0) },
+                onDelete: { requestDelete($0) }
+            )
                 .navigationSplitViewColumnWidth(min: 220, ideal: 280)
         } detail: {
             TerminalTabsView()
@@ -50,7 +55,14 @@ struct ContentView: View {
         .sheet(item: $formModel) { model in
             ItemFormView(model: model)
         }
-        .confirmationDialog(deleteMessage, isPresented: $confirmDelete, titleVisibility: .visible) {
+        .confirmationDialog(
+            deleteMessage,
+            isPresented: Binding(
+                get: { deleteTarget != nil },
+                set: { if !$0 { deleteTarget = nil } }
+            ),
+            titleVisibility: .visible
+        ) {
             Button("Excluir", role: .destructive) { performDelete() }
             Button("Cancelar", role: .cancel) {}
         }
@@ -173,26 +185,47 @@ struct ContentView: View {
         }
     }
 
+    /// Mensagem de confirmação conforme o alvo: servidor, diretório (com seus itens) ou workspace.
     private var deleteMessage: String {
-        guard let selection = store.selection else { return "" }
-        let name: String
-        switch selection {
-        case .workspace(let id): name = store.workspace(id: id)?.name ?? ""
-        case .item(let id): name = store.item(id: id)?.name ?? ""
+        guard let target = deleteTarget else { return "" }
+        switch target {
+        case .workspace(let id):
+            let name = store.workspace(id: id)?.name ?? ""
+            let count = store.descendantCount(of: target)
+            return count > 0
+                ? "Excluir o workspace \"\(name)\" e seus \(count) itens?"
+                : "Excluir o workspace \"\(name)\"?"
+        case .item(let id):
+            guard let item = store.item(id: id) else { return "" }
+            switch item {
+            case .server(let server):
+                return "Excluir o servidor \"\(server.name)\"?"
+            case .directory(let directory):
+                let count = store.descendantCount(of: target)
+                return count > 0
+                    ? "Excluir o diretório \"\(directory.name)\" e seus \(count) itens?"
+                    : "Excluir o diretório \"\(directory.name)\"?"
+            }
         }
-        let count = store.descendantCount(of: selection)
-        return count > 0 ? "Excluir \"\(name)\" e seus \(count) itens?" : "Excluir \"\(name)\"?"
     }
 
+    /// Exclusão pelo menu ou atalho: usa o item selecionado na árvore.
     private func requestDelete() {
-        guard store.selection != nil else { return }
-        confirmDelete = true
+        guard let selection = store.selection else { return }
+        requestDelete(selection)
+    }
+
+    /// Exclusão pelo menu de contexto: usa o item clicado, independentemente da seleção.
+    private func requestDelete(_ target: TreeSelection) {
+        guard store.exists(target) else { return }
+        deleteTarget = target
     }
 
     private func performDelete() {
-        guard let selection = store.selection else { return }
+        guard let target = deleteTarget else { return }
+        deleteTarget = nil
         do {
-            try store.delete(selection)
+            try store.delete(target)
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -204,6 +237,11 @@ struct ContentView: View {
 
     private func handleEdit() {
         guard let selection = store.selection else { return }
+        edit(selection)
+    }
+
+    /// Abre o formulário do item indicado: workspace, diretório ou servidor.
+    private func edit(_ selection: TreeSelection) {
         switch selection {
         case .workspace(let id):
             guard let workspace = store.workspace(id: id) else { return }
