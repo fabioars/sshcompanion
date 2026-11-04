@@ -149,6 +149,34 @@ struct SessionManagerTests {
         #expect(String(decoding: received, as: UTF8.self) == "abcdef")
     }
 
+    @Test func reattachedViewReceivesTranscriptSoFar() {
+        let (manager, _, server) = makeManager()
+        let session = manager.open(server: server)
+        var first = Data()
+        let firstToken = session.attach { first.append($0) }
+        session.handle(.output(Data("abc".utf8)))
+        var second = Data()
+        session.attach { second.append($0) }
+        session.handle(.output(Data("def".utf8)))
+        #expect(String(decoding: first, as: UTF8.self) == "abc")
+        #expect(String(decoding: second, as: UTF8.self) == "abcdef")
+        _ = firstToken
+    }
+
+    @Test func staleDetachDoesNotDropCurrentView() {
+        let (manager, _, server) = makeManager()
+        let session = manager.open(server: server)
+        let oldToken = session.attach { _ in }
+        var received = Data()
+        let newToken = session.attach { received.append($0) }
+        session.detach(token: oldToken)
+        session.handle(.output(Data("abc".utf8)))
+        #expect(String(decoding: received, as: UTF8.self) == "abc")
+        session.detach(token: newToken)
+        session.handle(.output(Data("def".utf8)))
+        #expect(String(decoding: received, as: UTF8.self) == "abc")
+    }
+
     @Test func resizeForwardsToChannel() {
         let (manager, connector, server) = makeManager()
         let session = manager.open(server: server)

@@ -57,9 +57,9 @@ final class Session: Identifiable {
     /// Limite do transcript guardado para o histórico (em bytes); o excedente mais antigo é descartado.
     static let transcriptLimit = 512 * 1024
     private(set) var state: SessionState = .connecting
-    /// Saída recebida antes de a view de terminal se conectar; é reproduzida ao anexar.
-    private(set) var backlog = Data()
-    var onOutput: ((Data) -> Void)?
+    private(set) var onOutput: ((Data) -> Void)?
+    /// Identifica a view anexada no momento, para que o detach de uma view antiga não derrube a nova.
+    private var attachmentToken: UUID?
     private(set) var readerTask: Task<Void, Never>?
     /// Endereço IP resolvido para o host, quando disponível.
     private(set) var resolvedAddress: String?
@@ -260,23 +260,27 @@ final class Session: Identifiable {
     }
 
     private func deliver(_ data: Data) {
-        if let onOutput {
-            onOutput(data)
-        } else {
-            backlog.append(data)
-        }
+        onOutput?(data)
     }
 
-    /// Entrega o backlog à view recém-anexada e passa a enviar diretamente.
-    func attach(_ handler: @escaping (Data) -> Void) {
+    /// Reproduz na view recém-anexada tudo o que já foi recebido (a view pode ser recriada pelo SwiftUI
+    /// e nasceria vazia) e passa a enviar diretamente. Devolve o token a usar no `detach`.
+    @discardableResult
+    func attach(_ handler: @escaping (Data) -> Void) -> UUID {
+        let token = UUID()
+        attachmentToken = token
         onOutput = handler
-        if !backlog.isEmpty {
-            handler(backlog)
-            backlog = Data()
+        if !transcript.isEmpty {
+            handler(transcript)
         }
+        return token
     }
 
-    func detach() {
+    /// Só desanexa se `token` for o da view atual: o SwiftUI pode desmontar a view antiga depois
+    /// de a nova já ter se anexado.
+    func detach(token: UUID) {
+        guard attachmentToken == token else { return }
+        attachmentToken = nil
         onOutput = nil
     }
 

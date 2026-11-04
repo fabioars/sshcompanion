@@ -59,7 +59,9 @@ struct TerminalSessionView: NSViewRepresentable {
     func updateNSView(_ nsView: TerminalContainerView, context: Context) {}
 
     static func dismantleNSView(_ nsView: TerminalContainerView, coordinator: Coordinator) {
-        coordinator.session.detach()
+        if let token = coordinator.attachmentToken {
+            coordinator.session.detach(token: token)
+        }
         coordinator.registry?.unregister(coordinator.session.id)
     }
 
@@ -67,13 +69,14 @@ struct TerminalSessionView: NSViewRepresentable {
         let session: Session
         weak var registry: TerminalRegistry?
         weak var sessions: SessionManager?
+        private(set) var attachmentToken: UUID?
 
         init(session: Session) {
             self.session = session
         }
 
         func attach(to view: TerminalView) {
-            session.attach { [weak view] data in
+            attachmentToken = session.attach { [weak view] data in
                 view?.feed(byteArray: ArraySlice(data))
             }
         }
